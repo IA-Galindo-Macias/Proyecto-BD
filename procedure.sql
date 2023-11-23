@@ -1,11 +1,61 @@
 use mydb;
 
+-- -----------------------------------------------------
+-- Inicializar salarios : Luis Eduardo Galindo Amaya
+-- -----------------------------------------------------
+DELIMITER %%
+DROP TRIGGER IF EXISTS after_insert_integrante %%
+CREATE TRIGGER after_insert_integrante
+AFTER INSERT
+ON integrante FOR EACH ROW
+BEGIN
+    INSERT INTO historial_salario (
+		historial_salario_anterior,
+		historial_salario_siguiente,
+		id_integrante
+	)
+	VALUES (
+		0,
+        new.integrante_salario,
+		new.id_integrante
+	);
+END 
+%%
+
+-- -----------------------------------------------------
+-- Crear integrantes : Luis Eduardo Galindo Amaya
+-- -----------------------------------------------------
+DELIMITER %%
+CREATE PROCEDURE crear_integrante(
+	IN p_nombre VARCHAR(45),
+    IN p_email VARCHAR(45),
+    IN p_salario INT,
+    IN p_equipo_id INT
+)
+BEGIN
+	INSERT INTO integrante(
+		integrante_nombre,
+		integrante_email,
+        integrante_salario,
+        equipo_id_equipo
+    )
+	VALUES (
+		p_nombre,
+		p_email,
+        p_salario,
+        p_equipo_id
+	);
+END
+%%
+
 
 -- -----------------------------------------------------
 -- Crear equipos : Luis Eduardo Galindo Amaya
 -- -----------------------------------------------------
 DELIMITER %%
-CREATE PROCEDURE crear_equipo(IN p_nombre VARCHAR(45))
+CREATE PROCEDURE crear_equipo(
+	IN p_nombre VARCHAR(45)
+)
 BEGIN
 	INSERT INTO equipo (
         equipo_nombre, 
@@ -60,21 +110,6 @@ BEGIN
     UPDATE tarea
     SET equipo_id_equipo = p_id_equipo
     WHERE id_tarea = p_id_tarea;
-END
-%%
-
-
--- -----------------------------------------------------
--- obtener equipo del integrante : Luis Eduardo Galindo Amaya 
--- -----------------------------------------------------
-DELIMITER %%
-CREATE PROCEDURE equipo_integrante(
-    IN p_id_integrante INT
-)
-BEGIN
-    SELECT equipo_id_equipo 
-    FROM integrante 
-    WHERE id_integrante = p_id_integrante;
 END
 %%
 
