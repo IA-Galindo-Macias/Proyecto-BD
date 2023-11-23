@@ -13,20 +13,15 @@ END
 %%
 
 
-
-
 -- -----------------------------------------------------
 -- Crear tarea : Luis Eduardo Galindo Amaya 
 -- -----------------------------------------------------
 DELIMITER %%
-CREATE PROCEDURE insertar_tarea(
+CREATE PROCEDURE crear_tarea(
     IN p_inicio DATETIME,
     IN p_nombre VARCHAR(45),
     IN p_descripcion VARCHAR(255),
-    IN p_duracion INT,
-    IN p_status INT,
-    IN p_integrante_id INT,
-    IN p_equipo_id INT
+    IN p_duracion INT
 )
 BEGIN
     INSERT INTO tarea (
@@ -34,18 +29,14 @@ BEGIN
         tarea_nombre,
         tarea_descripcion,
         tarea_duracion,
-        tarea_status,
-        integrante_id_integrante,
-        equipo_id_equipo
+        tarea_status
     )
     VALUES (
         p_inicio,
         p_nombre,
         p_descripcion,
         p_duracion,
-        p_status,
-        p_integrante_id,
-        p_equipo_id
-    );
+        "pendiente"
+	);
 END
 %%
