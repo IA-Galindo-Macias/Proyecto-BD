@@ -1,6 +1,27 @@
 use mydb;
 
 
+DELIMITER %%
+DROP TRIGGER IF EXISTS before_update_duracion_tarea %%
+CREATE TRIGGER before_update_duracion_tarea
+BEFORE UPDATE ON tarea
+FOR EACH ROW
+BEGIN
+    IF NEW.tarea_duracion != OLD.tarea_duracion THEN
+        INSERT INTO historial_prorroga (
+			tarea_id_tarea,
+            historal_prorroga_duracion
+		)
+        VALUES (
+			NEW.id_tarea,
+            NEW.tarea_duracion - OLD.tarea_duracion
+		);
+    END IF;
+END 
+%%
+
+
+
 /**
  * @autor Luis Eduardo Galindo Amaya
  * Agrega el salario nuevo al historial.
