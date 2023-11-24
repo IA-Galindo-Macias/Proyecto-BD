@@ -2,6 +2,34 @@ use mydb;
 
 /**
  * @autor Luis Eduardo Galindo Amaya
+ * Agregar dias extras a la duracion de una tarea 
+ * @param p_integrante_id
+ * @param 
+ */
+DELIMITER %%
+CREATE PROCEDURE agregar_prorroga(
+	IN p_id_tarea INT,
+    IN p_duracion_prorroga INT
+)
+BEGIN
+    DECLARE v_tarea_duracion_actual INT;
+
+    -- Obtener la duración actual de la tarea
+    SELECT tarea_duracion 
+    INTO v_tarea_duracion_actual
+    FROM tarea
+    WHERE id_tarea = p_id_tarea;
+
+    -- Actualizar la duración de la tarea
+    UPDATE tarea
+    SET tarea_duracion = v_tarea_duracion_actual + p_duracion_prorroga
+    WHERE id_tarea = p_id_tarea;
+END 
+%%
+
+
+/**
+ * @autor Luis Eduardo Galindo Amaya
  * llamar a este metodo para marcar la entrada o salida de un integrante
  * @param p_integrante_id
  */
@@ -13,11 +41,13 @@ BEGIN
     DECLARE v_id_control INT;
     
     -- guardar la utima entrada
-	SELECT id_control_horario
-    INTO v_id_control
-    FROM control_horario
-    WHERE p_integrante_id = id_integrante 
-    AND control_horario_salida IS NULL;
+	SELECT 
+    id_control_horario
+INTO v_id_control FROM
+    control_horario
+WHERE
+    p_integrante_id = id_integrante
+        AND control_horario_salida IS NULL;
     
     IF v_id_control IS NULL THEN
 		INSERT INTO control_horario(
@@ -27,7 +57,7 @@ BEGIN
             p_integrante_id
         );
         
-        SELECT 'creado' AS mensaje;     
+SELECT 'creado' AS mensaje;     
     ELSE
 		UPDATE 
             control_horario 
@@ -37,7 +67,7 @@ BEGIN
 		WHERE 
             id_control_horario = v_id_control;
         
-        SELECT 'actualizado' AS mensaje;     
+SELECT 'actualizado' AS mensaje;     
     END IF;
 END
 %%

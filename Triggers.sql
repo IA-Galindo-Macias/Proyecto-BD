@@ -1,9 +1,9 @@
 use mydb;
 
+
 /**
  * @autor Luis Eduardo Galindo Amaya
  * Agrega el salario nuevo al historial.
- * TODO: Agregar el trigger para actualizar el salario actual del integrante.
  */
 DELIMITER %%
 DROP TRIGGER IF EXISTS after_update_salario %%
@@ -29,7 +29,6 @@ END;
 /**
  * @autor Luis Eduardo Galindo Amaya
  * Agrega el salario de un integrante al historial.
- * TODO: Agregar el trigger para actualizar el salario actual del integrante.
  */
 DELIMITER %%
 DROP TRIGGER IF EXISTS after_insert_integrante %%

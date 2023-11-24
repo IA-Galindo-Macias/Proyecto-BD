@@ -8,7 +8,8 @@ select * from control_horario;
 
 UPDATE integrante SET integrante_salario = 400 WHERE id_integrante = 1;
 
-call control_integrante(3);
+call agregar_prorroga(1, 10);
+call control_integrante(1);
 call asignar_equipo_tarea(1,1);
 call asignar_integrante_tarea(1, 1);
 -- call equipo_integrante(2);
