@@ -6,32 +6,42 @@ use mydb;
  * @param p_integrante_id
  */
 DELIMITER %%
-CREATE PROCEDURE control_integrante(IN p_integrante_id INT)
+CREATE PROCEDURE control_integrante(
+    IN p_integrante_id INT
+)
 BEGIN
     DECLARE v_id_control INT;
     
     -- guardar la utima entrada
-	SELECT id_control 
+	SELECT id_control_horario
     INTO v_id_control
     FROM control_horario
     WHERE p_integrante_id = id_integrante 
     AND control_horario_salida IS NULL;
     
     IF v_id_control IS NULL THEN
-		INSERT INTO control_horario(id_integrante) 
-        VALUES (p_integrante_id);
+		INSERT INTO control_horario(
+            id_integrante
+        ) 
+        VALUES (
+            p_integrante_id
+        );
         
         SELECT 'creado' AS mensaje;     
     ELSE
-		UPDATE control_horario SET
-			control_horario_salida = CURRENT_TIMESTAMP,
+		UPDATE 
+            control_horario 
+        SET 
+            control_horario_salida = CURRENT_TIMESTAMP,
             id_integrante = p_integrante_id
-		WHERE id_control = v_id_control;
+		WHERE 
+            id_control_horario = v_id_control;
         
         SELECT 'actualizado' AS mensaje;     
     END IF;
 END
 %%
+
 
 /**
  * @autor Luis Eduardo Galindo Amaya
@@ -174,10 +184,13 @@ BEGIN
     -- Verificar si el integrante pertenece al equipo de la tarea
     IF v_id_equipo = v_id_equipo_integrante THEN
         -- Asignar la tarea al integrante
-        UPDATE tarea
-        SET integrante_id_integrante = p_id_integrante,
+        UPDATE 
+            tarea
+        SET 
+            integrante_id_integrante = p_id_integrante,
             tarea_status = 'pendiente'
-        WHERE id_tarea = p_id_tarea;
+        WHERE 
+            id_tarea = p_id_tarea;
         
         SELECT 'Tarea asignada correctamente' AS mensaje;        
     ELSE
