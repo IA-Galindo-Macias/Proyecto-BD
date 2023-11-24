@@ -1,6 +1,9 @@
 use mydb;
 
-
+/**
+ * @autor Luis Eduardo Galindo Amaya
+ * agrega el tiempo de prorroga que se agrego a la tarea
+ */
 DELIMITER %%
 DROP TRIGGER IF EXISTS before_update_duracion_tarea %%
 CREATE TRIGGER before_update_duracion_tarea
@@ -10,7 +13,7 @@ BEGIN
     IF NEW.tarea_duracion != OLD.tarea_duracion THEN
         INSERT INTO historial_prorroga (
 			tarea_id_tarea,
-            historal_prorroga_duracion
+            historial_prorroga_duracion
 		)
         VALUES (
 			NEW.id_tarea,
@@ -19,7 +22,6 @@ BEGIN
     END IF;
 END 
 %%
-
 
 
 /**

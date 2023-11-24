@@ -5,6 +5,7 @@ select * from tarea;
 select * from equipo;
 select * from historial_salario;
 select * from control_horario;
+select * from historial_prorroga;
 
 UPDATE integrante SET integrante_salario = 400 WHERE id_integrante = 1;
 
