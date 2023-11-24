@@ -2,12 +2,34 @@ use mydb;
 
 /**
  * @autor Luis Eduardo Galindo Amaya
+ * Obtener el numero de horas trabajadas del integrante
+ * @param p_id_integrante 
+ */
+DELIMITER %%
+CREATE PROCEDURE horas_trabajadas(
+	IN p_id_integrante INT
+)
+BEGIN
+	SELECT sum(control_horario_salida - control_horario_entrada)/3600 
+    AS horas_trabajadas
+	FROM control_horario
+	WHERE control_horario_salida IS NOT NULL
+	AND id_integrante = p_id_integrante
+	GROUP BY id_integrante;
+END
+%%
+
+
+/**
+ * @autor Luis Eduardo Galindo Amaya
  * Marca una tarea como terminada 
  * @param p_id_tarea
  * @param 
  */
 DELIMITER %%
-CREATE PROCEDURE marcar_tarea_completada(IN p_id_tarea INT)
+CREATE PROCEDURE marcar_tarea_completada(
+    IN p_id_tarea INT
+)
 BEGIN
     -- Actualizar el estado de la tarea a 'completado'
     UPDATE tarea
@@ -21,7 +43,7 @@ END
  * @autor Luis Eduardo Galindo Amaya
  * Agregar dias extras a la duracion de una tarea 
  * @param p_integrante_id
- * @param 
+ * @param p_duracion_prorroga
  */
 DELIMITER %%
 CREATE PROCEDURE agregar_prorroga(
@@ -58,13 +80,11 @@ BEGIN
     DECLARE v_id_control INT;
     
     -- guardar la utima entrada
-	SELECT 
-    id_control_horario
-INTO v_id_control FROM
-    control_horario
-WHERE
-    p_integrante_id = id_integrante
-        AND control_horario_salida IS NULL;
+	SELECT id_control_horario
+    INTO v_id_control 
+    FROM control_horario
+    WHERE p_integrante_id = id_integrante
+    AND control_horario_salida IS NULL;
     
     IF v_id_control IS NULL THEN
 		INSERT INTO control_horario(
@@ -74,17 +94,15 @@ WHERE
             p_integrante_id
         );
         
-SELECT 'creado' AS mensaje;     
+        SELECT 'creado' AS mensaje;     
     ELSE
-		UPDATE 
-            control_horario 
+		UPDATE control_horario 
         SET 
-            control_horario_salida = CURRENT_TIMESTAMP,
+            control_horario_salida = CURRENT_TIMESTAMP, 
             id_integrante = p_integrante_id
-		WHERE 
-            id_control_horario = v_id_control;
+		WHERE id_control_horario = v_id_control;
         
-SELECT 'actualizado' AS mensaje;     
+        SELECT 'actualizado' AS mensaje;     
     END IF;
 END
 %%

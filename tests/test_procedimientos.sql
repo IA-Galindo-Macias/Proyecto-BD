@@ -9,8 +9,10 @@ select * from historial_prorroga;
 
 UPDATE integrante SET integrante_salario = 400 WHERE id_integrante = 1;
 
+
+call horas_trabajadas(1);
 call agregar_prorroga(1, 10);
-call control_integrante(1);
+call control_integrante(2);
 call asignar_equipo_tarea(1,1);
 call asignar_integrante_tarea(1, 1);
 call marcar_tarea_completada(1);
