@@ -2,6 +2,23 @@ use mydb;
 
 /**
  * @autor Luis Eduardo Galindo Amaya
+ * Marca una tarea como terminada 
+ * @param p_id_tarea
+ * @param 
+ */
+DELIMITER %%
+CREATE PROCEDURE marcar_tarea_completada(IN p_id_tarea INT)
+BEGIN
+    -- Actualizar el estado de la tarea a 'completado'
+    UPDATE tarea
+    SET tarea_status = 'COMPLETADO'
+    WHERE id_tarea = p_id_tarea;
+END 
+%%
+
+
+/**
+ * @autor Luis Eduardo Galindo Amaya
  * Agregar dias extras a la duracion de una tarea 
  * @param p_integrante_id
  * @param 
@@ -150,15 +167,13 @@ BEGIN
         tarea_inicio,
         tarea_nombre,
         tarea_descripcion,
-        tarea_duracion,
-        tarea_status
+        tarea_duracion
     )
     VALUES (
         p_inicio,
         p_nombre,
         p_descripcion,
-        p_duracion,
-        "pendiente"
+        p_duracion
 	);
 END
 %%
@@ -218,7 +233,7 @@ BEGIN
             tarea
         SET 
             integrante_id_integrante = p_id_integrante,
-            tarea_status = 'pendiente'
+            tarea_status = 'PENDIENTE'
         WHERE 
             id_tarea = p_id_tarea;
         

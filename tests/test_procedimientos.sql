@@ -13,6 +13,7 @@ call agregar_prorroga(1, 10);
 call control_integrante(1);
 call asignar_equipo_tarea(1,1);
 call asignar_integrante_tarea(1, 1);
+call marcar_tarea_completada(1);
 -- call equipo_integrante(2);
 call crear_integrante("pepe", "pepe@12", 100, 1);
 
