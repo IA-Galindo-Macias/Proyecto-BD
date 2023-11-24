@@ -2,6 +2,39 @@ use mydb;
 
 /**
  * @autor Luis Eduardo Galindo Amaya
+ * llamar a este metodo para marcar la entrada o salida de un integrante
+ * @param p_integrante_id
+ */
+DELIMITER %%
+CREATE PROCEDURE control_integrante(IN p_integrante_id INT)
+BEGIN
+    DECLARE v_id_control INT;
+    
+    -- guardar la utima entrada
+	SELECT id_control 
+    INTO v_id_control
+    FROM control_horario
+    WHERE p_integrante_id = id_integrante 
+    AND control_horario_salida IS NULL;
+    
+    IF v_id_control IS NULL THEN
+		INSERT INTO control_horario(id_integrante) 
+        VALUES (p_integrante_id);
+        
+        SELECT 'creado' AS mensaje;     
+    ELSE
+		UPDATE control_horario SET
+			control_horario_salida = CURRENT_TIMESTAMP,
+            id_integrante = p_integrante_id
+		WHERE id_control = v_id_control;
+        
+        SELECT 'actualizado' AS mensaje;     
+    END IF;
+END
+%%
+
+/**
+ * @autor Luis Eduardo Galindo Amaya
  * Crea un nuevo integrante en el equipo.
  * 
  * @param p_nombre      Nombre del nuevo integrante.
