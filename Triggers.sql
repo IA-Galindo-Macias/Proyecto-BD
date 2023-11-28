@@ -1,5 +1,7 @@
 use mydb;
 
+/*before/after UPDATE*/
+
 /**
  * @autor Luis Eduardo Galindo Amaya
  * agrega el tiempo de prorroga que se agrego a la tarea
@@ -49,6 +51,8 @@ BEGIN
 END;
 %%
 
+/*before/after INSERT*/
+
 /**
  * @autor Luis Eduardo Galindo Amaya
  * Agrega el salario de un integrante al historial.
@@ -71,3 +75,38 @@ BEGIN
 	);
 END 
 %%
+
+/*before/after DELETE*/
+
+/**
+ * @autor Hector Miguel Macias Baltazar
+ * Evita que se eliminen tareas que ya han sido completadas. 
+ */
+DELIMITER %%
+DROP TRIGGER IF EXISTS before_delete_tarea %%
+CREATE TRIGGER before_delete_tarea
+BEFORE DELETE ON tarea
+FOR EACH ROW
+BEGIN
+    IF OLD.tarea_status = 'COMPLETADO' THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'No se puede eliminar una tarea completada';
+    END IF;
+END;
+%%
+
+/**
+ * @autor Hector Miguel Macias Baltazar
+ * Elimina las entradas del historial de prorrogas cuando se elimina su tarea asociada.
+ */
+DELIMITER %%
+DROP TRIGGER IF EXISTS after_delete_tarea %%
+CREATE TRIGGER after_delete_tarea
+AFTER DELETE 
+ON tarea FOR EACH ROW
+BEGIN
+    DELETE FROM historial_prorroga
+    WHERE tarea_id_tarea = old.id_tarea;
+END;
+%%
+
