@@ -38,6 +38,23 @@ BEGIN
 END 
 %%
 
+/**
+ * @autor Luis Eduardo Galindo Amaya
+ * Marca una tarea como terminada 
+ * @param p_id_tarea
+ * @param 
+ */
+DELIMITER %%
+CREATE PROCEDURE marcar_tarea_cancelada(
+    IN p_id_tarea INT
+)
+BEGIN
+    -- Actualizar el estado de la tarea a 'completado'
+    UPDATE tarea
+    SET tarea_status = 'CANCELADO'
+    WHERE id_tarea = p_id_tarea;
+END 
+%%
 
 /**
  * @autor Luis Eduardo Galindo Amaya
