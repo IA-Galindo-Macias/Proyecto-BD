@@ -13,11 +13,14 @@ UPDATE integrante SET integrante_salario = 400 WHERE id_integrante = 1;
 call horas_trabajadas(1);
 call agregar_prorroga(1, 10);
 call control_integrante(2);
-call asignar_equipo_tarea(1,1);
-call asignar_integrante_tarea(1, 1);
+call asignar_equipo_tarea(3,2);
+call asignar_integrante_tarea(2, 3);
 call marcar_tarea_completada(1);
 -- call equipo_integrante(2);
 call crear_integrante("pepe", "pepe@12", 100, 1);
+CALL crear_tarea('2023-11-28 09:00:00', 'Tarea 1', 'Descripción de la tarea 1', 3);
+CALL crear_tarea('2023-11-28 13:00:00', 'Tarea 2', 'Descripción de la tarea 2', 5);
+
 
 call crear_tarea(
     '2023-11-22 12:00:00',
@@ -25,3 +28,6 @@ call crear_tarea(
     'Descripcion de Tarea1',
     5
 );
+
+
+select * from vista_tareas_pendientes;
