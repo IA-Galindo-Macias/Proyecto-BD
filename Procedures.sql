@@ -5,13 +5,13 @@ use mydb;
  **/
 DELIMITER %%
 CREATE PROCEDURE salario_mas_alto_equipo(
-	IN p_id_integrante INT
+	IN p_id_equipo INT
 )
 BEGIN
     SELECT 
 		MAX(integrante_salario) 
     FROM integrante
-	WHERE equipo_id_equipo = p_id_integrante;
+	WHERE equipo_id_equipo = p_id_equipo;
 END 
 %%
 
@@ -20,13 +20,13 @@ END
  **/
 DELIMITER %%
 CREATE PROCEDURE salario_mas_bajo_equipo(
-	IN p_id_integrante INT
+	IN p_id_equipo INT
 )
 BEGIN
     SELECT 
 		MIN(integrante_salario) 
     FROM integrante
-	WHERE equipo_id_equipo = p_id_integrante;
+	WHERE equipo_id_equipo = p_id_equipo;
 END 
 %%
 
