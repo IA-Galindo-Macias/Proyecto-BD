@@ -245,3 +245,34 @@ CALL crear_tarea(
     8
 );
 
+-- -------------------------------------------------------------------- 
+-- asignar tareas
+-- --------------------------------------------------------------------
+
+CALL asignar_equipo_tarea(7, 3); --
+CALL asignar_equipo_tarea(15, 5);
+CALL asignar_equipo_tarea(6, 13); --
+CALL asignar_equipo_tarea(9, 10);
+CALL asignar_equipo_tarea(12, 2);
+CALL asignar_equipo_tarea(4, 1); --
+CALL asignar_equipo_tarea(11, 14);
+CALL asignar_equipo_tarea(3, 8); --
+CALL asignar_equipo_tarea(5, 7); --
+CALL asignar_equipo_tarea(13,  15);
+CALL asignar_equipo_tarea(10,  6);
+CALL asignar_equipo_tarea(2, 9); --
+CALL asignar_equipo_tarea(1, 12); --
+CALL asignar_equipo_tarea(14,  4);
+CALL asignar_equipo_tarea(8, 11); 
+
+-- --------------------------------------------------------------------
+-- asignar integrantes
+-- --------------------------------------------------------------------
+
+CALL asignar_integrante_tarea(7, 1);
+CALL asignar_integrante_tarea(13, 3);
+CALL asignar_integrante_tarea(9, 7);
+CALL asignar_integrante_tarea(5, 8);
+CALL asignar_integrante_tarea(1, 12);
+CALL asignar_integrante_tarea(3, 9);
+CALL asignar_integrante_tarea(1, 12);
