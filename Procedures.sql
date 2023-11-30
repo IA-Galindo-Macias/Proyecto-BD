@@ -1,7 +1,22 @@
 use mydb;
 
 /**
- * Calcular el promedio de salario usando la función AVG
+ * salario mas alto en el equipo
+ **/
+DELIMITER %%
+CREATE PROCEDURE salario_mas_alto_equipo(
+	IN p_id_integrante INT
+)
+BEGIN
+    SELECT 
+		MAX(integrante_salario) 
+    FROM integrante
+	WHERE equipo_id_equipo = p_id_integrante;
+END 
+%%
+
+/**
+ * salario mas bajo en el equipo
  **/
 DELIMITER %%
 CREATE PROCEDURE salario_mas_bajo_equipo(
@@ -25,9 +40,6 @@ BEGIN
     FROM integrante;
 END 
 %%
-
-
-
 
 
 /**
