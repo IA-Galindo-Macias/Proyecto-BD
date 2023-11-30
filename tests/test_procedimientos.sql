@@ -23,6 +23,7 @@ call crear_integrante("jose", "la@12", -1, 1);
 CALL crear_tarea('2023-11-28 09:00:00', 'Tarea 1', 'Descripción de la tarea 1', 3);
 CALL crear_tarea('2023-11-28 13:00:00', 'Tarea 2', 'Descripción de la tarea 2', 5);
 call calcular_promedio_salario();
+call salario_mas_bajo_equipo(2);
 
 call crear_tarea(
     '2023-11-22 12:00:00',

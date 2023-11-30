@@ -4,12 +4,27 @@ use mydb;
  * Calcular el promedio de salario usando la función AVG
  **/
 DELIMITER %%
+CREATE PROCEDURE salario_mas_bajo_equipo(
+	IN p_id_integrante INT
+)
+BEGIN
+    SELECT 
+		MIN(integrante_salario) 
+    FROM integrante
+	WHERE equipo_id_equipo = p_id_integrante;
+END 
+%%
+
+/**
+ * Calcular el promedio de salario usando la función AVG
+ **/
+DELIMITER %%
 CREATE PROCEDURE calcular_promedio_salario()
 BEGIN
     SELECT AVG(integrante_salario) 
-    AS promedio_salario
-    FROM mydb.integrante;
-END %%
+    FROM integrante;
+END 
+%%
 
 
 
