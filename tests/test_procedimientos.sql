@@ -19,6 +19,7 @@ call marcar_tarea_completada(1);
 call marcar_tarea_cancelada(1);
 -- call equipo_integrante(2);
 call crear_integrante("pepe", "pepe@12", 100, 1);
+call crear_integrante("jose", "la@12", -1, 1);
 CALL crear_tarea('2023-11-28 09:00:00', 'Tarea 1', 'Descripción de la tarea 1', 3);
 CALL crear_tarea('2023-11-28 13:00:00', 'Tarea 2', 'Descripción de la tarea 2', 5);
 
@@ -30,6 +31,7 @@ call crear_tarea(
     5
 );
 
+select pago_total(10,4) integrante;
 
 select * from vista_tareas_pendientes;
 select * from vista_tareas_canceladas;

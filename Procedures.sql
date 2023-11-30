@@ -1,6 +1,36 @@
 use mydb;
 
 /**
+**/
+DELIMITER %%
+CREATE FUNCTION pago_total(
+    horas INT, 
+    salario INT
+)
+RETURNS INT DETERMINISTIC
+BEGIN
+    DECLARE pago INT;
+    SET pago = horas*salario;
+    RETURN pago;
+END 
+%%
+
+
+/**
+**/
+DELIMITER %%
+CREATE FUNCTION convertir_segundos_horas(
+    segundos INT
+)
+RETURNS INT DETERMINISTIC
+BEGIN
+    DECLARE resultado INT;
+    SET resultado = segundos/3600;
+    RETURN resultado;
+END 
+%%
+
+/**
  * @autor Luis Eduardo Galindo Amaya
  * Obtener el numero de horas trabajadas del integrante
  * @param p_id_integrante 

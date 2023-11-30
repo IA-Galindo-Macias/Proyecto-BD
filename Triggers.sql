@@ -53,6 +53,22 @@ END;
 
 /*before/after INSERT*/
 
+
+DELIMITER %%
+DROP TRIGGER IF EXISTS before_insert_integrante %%
+CREATE TRIGGER before_insert_integrante
+AFTER INSERT
+ON integrante FOR EACH ROW
+BEGIN
+	IF NEW.integrante_salario < 0 THEN
+		SIGNAL SQLSTATE '45000'
+		SET MESSAGE_TEXT = 'El salario debe ser mayor a 0';
+    END IF;
+END;
+%%
+
+
+
 /**
  * @autor Luis Eduardo Galindo Amaya
  * Agrega el salario de un integrante al historial.
