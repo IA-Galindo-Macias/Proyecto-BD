@@ -27,105 +27,105 @@ call crear_equipo("Equipo 15");
 CALL crear_integrante(
     "Juan Pérez",
     "juan.perez@example.com", 
-    50000, 
+    50, 
     1
 );
 
 CALL crear_integrante(
     "María García",
     "maria.garcia@example.com", 
-    55000, 
+    55, 
     1
 );
 
 CALL crear_integrante(
     "Luis Rodríguez",
     "luis.rodriguez@example.com", 
-    60000, 
+    60, 
     2
 );
 
 CALL crear_integrante(
     "Ana Martínez",
     "ana.martinez@example.com", 
-    52000, 
+    52, 
     2
 );
 
 CALL crear_integrante(
     "Carlos López",
     "carlos.lopez@example.com", 
-    48000, 
+    40, 
     3
 );
 
 CALL crear_integrante(
     "Laura Sánchez",
     "laura.sanchez@example.com", 
-    51000, 
+    51, 
     3
 );
 
 CALL crear_integrante(
     "Pedro Gómez",
     "pedro.gomez@example.com", 
-    53000, 
+    53, 
     4
 );
 
 CALL crear_integrante(
     "Rosa Díaz",
     "rosa.diaz@example.com", 
-    58000, 
+    58, 
     4
 );
 
 CALL crear_integrante(
     "Javier Fernández",
     "javier.fernandez@example.com", 
-    60000, 
+    60, 
     5
 );
 
 CALL crear_integrante(
     "Isabel Ramírez",
     "isabel.ramirez@example.com", 
-    52000, 
+    52, 
     5
 );
 
 CALL crear_integrante(
     "Miguel Torres",
     "miguel.torres@example.com", 
-    48000, 
+    48, 
     6
 );
 
 CALL crear_integrante(
     "Sara López",
     "sara.lopez@example.com", 
-    51000, 
+    51, 
     6
 );
 
 CALL crear_integrante(
     "Alejandro Ruiz",
     "alejandro.ruiz@example.com", 
-    53000, 
+    53, 
     7
 );
 
 CALL crear_integrante(
     "Elena Herrera",
     "elena.herrera@example.com", 
-    58000, 
+    58, 
     7
 );
 
 CALL crear_integrante(
     "Víctor Castro",
     "victor.castro@example.com", 
-    60000, 
+    60, 
     8
 );
 
@@ -276,3 +276,26 @@ CALL asignar_integrante_tarea(5, 8);
 CALL asignar_integrante_tarea(1, 12);
 CALL asignar_integrante_tarea(3, 9);
 CALL asignar_integrante_tarea(1, 12);
+
+-- --------------------------------------------------------------------
+-- asignar integrantes
+-- --------------------------------------------------------------------
+INSERT 
+INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
+VALUES ('2023-11-28 00:00:00', '2023-11-28 01:00:00', 1);
+
+INSERT 
+INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
+VALUES ('2023-11-28 00:00:00', '2023-11-28 02:00:00', 4);
+
+INSERT 
+INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
+VALUES ('2023-11-28 00:00:00', '2023-11-28 05:00:00', 5);
+
+INSERT 
+INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
+VALUES ('2023-11-28 00:00:00', '2023-11-28 07:00:00', 5);
+
+INSERT 
+INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
+VALUES ('2023-11-28 00:00:00', '2023-11-28 06:00:00', 6);

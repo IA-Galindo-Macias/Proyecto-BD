@@ -26,7 +26,7 @@ RETURNS INT DETERMINISTIC
 BEGIN
     DECLARE total_horas INT;
 
-    SELECT SUM((control_horario_salida - control_horario_entrada) / 3600) 
+    SELECT SUM(TIMESTAMPDIFF(hour, control_horario_entrada, control_horario_salida))
     INTO total_horas
     FROM control_horario
     WHERE control_horario_salida IS NOT NULL
@@ -103,7 +103,7 @@ CREATE FUNCTION convertir_segundos_horas(
 RETURNS INT DETERMINISTIC
 BEGIN
     DECLARE resultado INT;
-    SET resultado = segundos/3600;
+    SET resultado = FLOOR(segundos/3600);
     RETURN resultado;
 END 
 %%
