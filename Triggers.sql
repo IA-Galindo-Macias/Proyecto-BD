@@ -51,7 +51,6 @@ BEGIN
 END;
 %%
 
-/*before/after INSERT*/
 
 
 DELIMITER %%

@@ -35,3 +35,4 @@ select pago_total(10,4) integrante;
 
 select * from vista_tareas_pendientes;
 select * from vista_tareas_canceladas;
+select * from vista_tareas_status;

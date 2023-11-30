@@ -39,3 +39,15 @@ FROM
     ON integrante_id_integrante = id_integrante
 WHERE 
     tarea_status = 'CANCELADO';
+    
+
+/**
+left join
+*/
+CREATE OR REPLACE VIEW vista_tareas_status AS
+SELECT
+	*
+FROM 
+	tarea 
+    RIGHT JOIN tarea_completada
+    ON id_tarea_completa=id_tarea;
