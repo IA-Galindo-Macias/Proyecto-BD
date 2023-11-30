@@ -1,6 +1,15 @@
 use mydb;
 
-/*before/after UPDATE*/
+DELIMITER %%
+CREATE TRIGGER after_update_tarea
+AFTER UPDATE ON mydb.tarea
+FOR EACH ROW
+BEGIN
+    IF NEW.tarea_status = 'COMPLETADO' THEN
+        INSERT INTO tarea_completada (tarea_completada_marca, tarea_id_tarea)
+        VALUES (CURRENT_TIMESTAMP(), NEW.id_tarea);
+    END IF;
+END %%
 
 /**
  * @autor Luis Eduardo Galindo Amaya
