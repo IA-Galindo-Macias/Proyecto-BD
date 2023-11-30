@@ -1,6 +1,21 @@
 use mydb;
 
 /**
+ * Calcular el promedio de salario usando la función AVG
+ **/
+DELIMITER %%
+CREATE PROCEDURE calcular_promedio_salario()
+BEGIN
+    SELECT AVG(integrante_salario) 
+    AS promedio_salario
+    FROM mydb.integrante;
+END %%
+
+
+
+
+
+/**
 **/
 DELIMITER %%
 CREATE FUNCTION pago_total(
