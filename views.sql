@@ -51,3 +51,35 @@ FROM
 	tarea 
     RIGHT JOIN tarea_completada
     ON id_tarea_completa=id_tarea;
+
+/*
+ *
+ * reunion completa (union de ambos joins)
+ */
+CREATE VIEW equipos_tareas_view AS
+SELECT
+    e.id_equipo,
+    e.equipo_nombre,
+    t.id_tarea,
+    t.tarea_nombre,
+    t.tarea_descripcion,
+    t.tarea_duracion,
+    t.tarea_status
+FROM equipo e
+	LEFT JOIN tarea t 
+    ON e.id_equipo = t.equipo_id_equipo
+	
+UNION
+
+SELECT
+    e.id_equipo,
+    e.equipo_nombre,
+    t.id_tarea,
+    t.tarea_nombre,
+    t.tarea_descripcion,
+    t.tarea_duracion,
+    t.tarea_status
+FROM tarea t
+	RIGHT JOIN equipo e 
+    ON e.id_equipo = t.equipo_id_equipo
+ORDER BY id_equipo;
