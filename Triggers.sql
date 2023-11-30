@@ -1,13 +1,22 @@
 use mydb;
 
+/**
+ * Agrega la marca de tiempo de la entrada de un integrante.
+ */
 DELIMITER %%
 CREATE TRIGGER after_update_tarea
 AFTER UPDATE ON mydb.tarea
 FOR EACH ROW
 BEGIN
     IF NEW.tarea_status = 'COMPLETADO' THEN
-        INSERT INTO tarea_completada (tarea_completada_marca, tarea_id_tarea)
-        VALUES (CURRENT_TIMESTAMP(), NEW.id_tarea);
+        INSERT INTO tarea_completada (
+            tarea_completada_marca, 
+            tarea_id_tarea
+        )
+        VALUES (
+            CURRENT_TIMESTAMP(), 
+            NEW.id_tarea
+        );
     END IF;
 END %%
 
@@ -61,7 +70,9 @@ END;
 %%
 
 
-
+/**
+ * Evita que se inserten integrantes con salario negativo.
+ */
 DELIMITER %%
 DROP TRIGGER IF EXISTS before_insert_integrante %%
 CREATE TRIGGER before_insert_integrante
@@ -121,7 +132,8 @@ END;
 
 /**
  * @autor Hector Miguel Macias Baltazar
- * Elimina las entradas del historial de prorrogas cuando se elimina su tarea asociada.
+ * Elimina las entradas del historial de prorrogas cuando se elimina 
+ * su tarea asociada.
  */
 DELIMITER %%
 DROP TRIGGER IF EXISTS after_delete_tarea %%

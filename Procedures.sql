@@ -1,6 +1,42 @@
 use mydb;
 
 /**
+ * Obtener el costo total del proyecto
+ */
+DELIMITER %%
+CREATE PROCEDURE costo_total_proyecto()
+BEGIN
+    SELECT 
+        sum(pago_total(
+            horas_trabajadas(id_integrante),
+            integrante_salario
+        )) as "Costo total proyecto"
+    FROM integrante;
+END
+%%
+
+/**
+ * @autor Luis Eduardo Galindo Amaya
+ * Obtener el numero de horas trabajadas del integrante
+ * @param p_id_integrante 
+ */
+DELIMITER %%
+CREATE FUNCTION horas_trabajadas(p_id_integrante INT) 
+RETURNS INT DETERMINISTIC
+BEGIN
+    DECLARE total_horas INT;
+
+    SELECT SUM((control_horario_salida - control_horario_entrada) / 3600) 
+    INTO total_horas
+    FROM control_horario
+    WHERE control_horario_salida IS NOT NULL
+    AND id_integrante = p_id_integrante;
+
+    RETURN total_horas;
+END 
+%%
+
+/**
  * salario mas alto en el equipo
  **/
 DELIMITER %%
@@ -71,26 +107,6 @@ BEGIN
     RETURN resultado;
 END 
 %%
-
-/**
- * @autor Luis Eduardo Galindo Amaya
- * Obtener el numero de horas trabajadas del integrante
- * @param p_id_integrante 
- */
-DELIMITER %%
-CREATE PROCEDURE horas_trabajadas(
-	IN p_id_integrante INT
-)
-BEGIN
-	SELECT sum(control_horario_salida - control_horario_entrada)/3600 
-    AS horas_trabajadas
-	FROM control_horario
-	WHERE control_horario_salida IS NOT NULL
-	AND id_integrante = p_id_integrante
-	GROUP BY id_integrante;
-END
-%%
-
 
 /**
  * @autor Luis Eduardo Galindo Amaya
