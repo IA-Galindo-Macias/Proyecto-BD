@@ -1,26 +1,6 @@
 use mydb;
 
 /**
- * Agrega la marca de tiempo de la entrada de un integrante.
- */
-DELIMITER %%
-CREATE TRIGGER after_update_tarea
-AFTER UPDATE ON mydb.tarea
-FOR EACH ROW
-BEGIN
-    IF NEW.tarea_status = 'COMPLETADO' THEN
-        INSERT INTO tarea_completada (
-            tarea_completada_marca, 
-            tarea_id_tarea
-        )
-        VALUES (
-            CURRENT_TIMESTAMP(), 
-            NEW.id_tarea
-        );
-    END IF;
-END %%
-
-/**
  * @autor Luis Eduardo Galindo Amaya
  * agrega el tiempo de prorroga que se agrego a la tarea
  */
@@ -43,6 +23,54 @@ BEGIN
 END 
 %%
 
+/**
+ * @autor Luis Eduardo Galindo Amaya
+ * Agrega la marca de tiempo de la entrada de un integrante.
+ */
+DELIMITER %%
+DROP TRIGGER IF EXISTS after_update_tarea;
+CREATE TRIGGER after_update_tarea
+AFTER UPDATE ON mydb.tarea
+FOR EACH ROW
+BEGIN
+    IF NEW.tarea_status = 'COMPLETADO' THEN
+        INSERT INTO tarea_completada (
+            tarea_completada_marca, 
+            tarea_id_tarea
+        )
+        VALUES (
+            CURRENT_TIMESTAMP(), 
+            NEW.id_tarea
+        );
+    END IF;
+END %%
+
+/**
+ * @autor Hector Miguel Macias Baltazar
+ * aniade un registro a historial_activo si el estado de un integrante
+ * cambio.
+ */
+DELIMITER %%
+DROP TRIGGER IF EXISTS after_update_integrante_activo;
+CREATE TRIGGER after_update_integrante_activo
+AFTER UPDATE ON integrante
+FOR EACH ROW
+BEGIN
+    IF NEW.integrante_activo != OLD.integrante_activo THEN
+        INSERT INTO historial_activo (
+            historial_activo_marca,
+            historial_activo_anterior,
+            historial_activo_siguiente,
+            integrante_id_integrante
+        ) VALUES (
+            CURRENT_TIMESTAMP,
+            OLD.integrante_activo,
+            NEW.integrante_activo,
+            NEW.id_integrante
+        );
+    END IF;
+END;
+%%
 
 /**
  * @autor Luis Eduardo Galindo Amaya
@@ -71,6 +99,7 @@ END;
 
 
 /**
+ * @autor Hector Miguel Macias Baltazar
  * Evita que se inserten integrantes con salario negativo.
  */
 DELIMITER %%
