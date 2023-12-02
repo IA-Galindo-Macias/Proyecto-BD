@@ -76,7 +76,7 @@ END;
 DELIMITER %%
 DROP TRIGGER IF EXISTS before_insert_integrante %%
 CREATE TRIGGER before_insert_integrante
-AFTER INSERT
+BEFORE INSERT
 ON integrante FOR EACH ROW
 BEGIN
 	IF NEW.integrante_salario < 0 THEN
