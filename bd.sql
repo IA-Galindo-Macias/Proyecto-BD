@@ -56,8 +56,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `mydb`.`historial_activo` (
   `id_historial_activo` INT NOT NULL AUTO_INCREMENT,
   `historial_activo_marca` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `historial_activo_anterior` BIT(1) NOT NULL,
-  `historial_activo_siguiente` BIT(1) NOT NULL,
+  `historial_activo_anterior` BIT(1) NOT NULL DEFAULT 0,
+  `historial_activo_siguiente` BIT(1) NOT NULL DEFAULT 0,
   `integrante_id_integrante` INT NOT NULL,
   PRIMARY KEY (`id_historial_activo`),
   INDEX `fk_historial_activo_integrante2_idx` (`integrante_id_integrante` ASC) VISIBLE,
