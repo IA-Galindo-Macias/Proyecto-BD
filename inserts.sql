@@ -277,6 +277,15 @@ CALL asignar_integrante_tarea(1, 12);
 CALL asignar_integrante_tarea(3, 9);
 CALL asignar_integrante_tarea(1, 12);
 
+
+-- --------------------------------------------------------------------
+-- marcar tarea completada
+-- --------------------------------------------------------------------
+
+CALL marcar_tarea_completada(1);
+CALL marcar_tarea_completada(3);
+CALL marcar_tarea_completada(7);
+
 -- --------------------------------------------------------------------
 -- asignar integrantes
 -- --------------------------------------------------------------------
@@ -299,3 +308,44 @@ VALUES ('2023-11-28 00:00:00', '2023-11-28 07:00:00', 5);
 INSERT 
 INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
 VALUES ('2023-11-28 00:00:00', '2023-11-28 06:00:00', 6);
+
+INSERT 
+INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
+VALUES ('2023-11-29 00:00:00', '2023-11-29 06:00:00', 6);
+
+INSERT 
+INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
+VALUES ('2023-10-28 00:00:00', '2023-10-28 06:00:00', 6);
+
+INSERT 
+INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
+VALUES ('2023-12-28 00:00:00', '2023-12-28 06:00:00', 6);
+
+INSERT 
+INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
+VALUES ('2023-01-28 00:00:00', '2023-01-28 06:00:00', 6);
+
+INSERT 
+INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
+VALUES ('2023-02-28 00:00:00', '2023-02-28 06:00:00', 6);
+
+INSERT 
+INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
+VALUES ('2023-04-28 00:00:00', '2023-04-28 06:00:00', 6);
+
+INSERT 
+INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
+VALUES ('2023-05-28 00:00:00', '2023-05-28 06:00:00', 6);
+
+INSERT 
+INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
+VALUES ('2023-06-28 00:00:00', '2023-06-28 06:00:00', 6);
+
+INSERT 
+INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
+VALUES ('2023-07-28 00:00:00', '2023-07-28 06:00:00', 6);
+
+INSERT 
+INTO control_horario (control_horario_entrada, control_horario_salida, id_integrante)
+VALUES ('2023-08-28 00:00:00', '2023-08-28 06:00:00', 6);
+
