@@ -1,8 +1,8 @@
 use mydb;
 
 /*
- *
- * reunion natural
+ * reunion natural, muetra las tareas pendientes
+ * @autor Luis Eduardo Galindo Amaya
  */
 CREATE OR REPLACE VIEW vista_tareas_pendientes AS
 SELECT
@@ -21,8 +21,8 @@ WHERE
 	tarea_status = 'PENDIENTE';
 
 /*
- *
- * reunion derecha
+ * reunion derecha, tareas canceladas
+ * @autor Luis Eduardo Galindo Amaya
  */
 CREATE OR REPLACE VIEW vista_tareas_canceladas AS
 SELECT
@@ -42,8 +42,9 @@ WHERE
     
 
 /**
-left join
-*/
+ * left join, estados de las tarea
+ * @autor Hector Miguel Macias Baltazar
+ */
 CREATE OR REPLACE VIEW vista_tareas_status AS
 SELECT
 	*
@@ -53,8 +54,8 @@ FROM
     ON id_tarea_completa=id_tarea;
 
 /*
- *
  * reunion completa (union de ambos joins)
+ * @autor Hector Miguel Macias Baltazar
  */
 CREATE VIEW equipos_tareas_view AS
 SELECT
