@@ -6,12 +6,12 @@ estudiantes:
 - Héctor Miguel Macías Baltazar (1272124)
 - Luis Eduardo Galindo Amaya (1274895)
 
-# Separado
+## Separado
 El foder 'separado' contiene los archivos que usamos para el desarollo
 de la practica (así como para la presentación del proyecto), el contenido 
 de todos los archivos se encuentra en Script.sql.
 
-# Instrucciones 
+## Instrucciones 
 Para cargar la base de datos se deben ejecutar los scripts en el siguiente
 orden:
 
@@ -19,7 +19,7 @@ orden:
 2. Script.sql
 3. Inserts.sql
 
-# Contenido
+## Contenido
 - `Tablas.sql` Es el archivo generado del diagrama en Workbench.
 - `Script.sql` contiene los Triggers, Procedimientos, Funciones y las vistas
 - `Inserts.sql` contiene los registros de prueba para la base de datos
