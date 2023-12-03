@@ -1,6 +1,7 @@
 use mydb;
 
 /**
+ * @autor Hector Miguel Macias Baltazar
  * Obtener el costo total del proyecto
  */
 DELIMITER %%
@@ -37,7 +38,9 @@ END
 %%
 
 /**
+ * @autor Hector Miguel Macias Baltazar
  * salario mas alto en el equipo
+ * @param p_id_equipo
  **/
 DELIMITER %%
 CREATE PROCEDURE salario_mas_alto_equipo(
@@ -52,7 +55,9 @@ END
 %%
 
 /**
+ * @autor Hector Miguel Macias Baltazar
  * salario mas bajo en el equipo
+ * @param p_id_equipo
  **/
 DELIMITER %%
 CREATE PROCEDURE salario_mas_bajo_equipo(
@@ -67,6 +72,7 @@ END
 %%
 
 /**
+ * @autor Hector Miguel Macias Baltazar
  * Calcular el promedio de salario usando la función AVG
  **/
 DELIMITER %%
@@ -79,6 +85,10 @@ END
 
 
 /**
+ * @autor Hector Miguel Macias Baltazar
+ * Calcular pago total (salario * horas)
+ * @param horas
+ * @param salario
 **/
 DELIMITER %%
 CREATE FUNCTION pago_total(
@@ -95,6 +105,9 @@ END
 
 
 /**
+ * @autor Hector Miguel Macias Baltazar
+ * Connvertir segundos a horas
+ * @param segundos
 **/
 DELIMITER %%
 CREATE FUNCTION convertir_segundos_horas(
@@ -109,7 +122,7 @@ END
 %%
 
 /**
- * @autor Luis Eduardo Galindo Amaya
+ * @autor Hector Miguel Macias Baltazar
  * Marca una tarea como terminada 
  * @param p_id_tarea
  * @param 
@@ -127,7 +140,7 @@ END
 %%
 
 /**
- * @autor Luis Eduardo Galindo Amaya
+ * @autor Hector Miguel Macias Baltazar
  * Marca una tarea como terminada 
  * @param p_id_tarea
  * @param 
